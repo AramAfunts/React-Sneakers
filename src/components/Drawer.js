@@ -1,4 +1,4 @@
-export function Drawer() {
+export function Drawer({ onCloseClick, items = [] }) {
   return (
     <div className="overlay">
       <div className="drawer">
@@ -6,35 +6,30 @@ export function Drawer() {
           Cart
           <img
             className="removeBtn cu-p"
+            onClick={onCloseClick}
             src="/img/btn-remove.svg"
-            alt="Remove"
+            alt="Close"
           />
         </h2>
 
         <div className="items">
-          <div className="cartItem d-flex align-center mb-20">
-            <div
-              style={{ backgroundImage: "url(/img/sneakers/2.jpg)" }}
-              className="cartItemImg"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Nike Air Max 270 Men's Sneakers</p>
-              <b>199.99 $</b>
+          {items.map((item) => (
+            <div className="cartItem d-flex align-center mb-20">
+              <div
+                style={{ backgroundImage: `url(${item.imageUrl})` }}
+                className="cartItemImg"
+              ></div>
+              <div className="mr-20 flex">
+                <p className="mb-5">{item.name}</p>
+                <b>{item.price} $</b>
+              </div>
+              <img
+                className="removeBtn"
+                src="/img/btn-remove.svg"
+                alt="Remove"
+              />
             </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-          </div>
-
-          <div className="cartItem d-flex align-center mb-20">
-            <div
-              style={{ backgroundImage: "url(/img/sneakers/2.jpg)" }}
-              className="cartItemImg"
-            ></div>
-            <div className="mr-20 flex">
-              <p className="mb-5">Nike Air Max 270 Men's Sneakers</p>
-              <b>199.99 $</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
-          </div>
+          ))}
         </div>
 
         <div className="cartTotalBlock">
