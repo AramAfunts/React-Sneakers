@@ -1,6 +1,34 @@
 import { Card } from "../components/Card";
 
-export function Home({ items, searchValue, setSearchValue, handleSearchChange, addToCart, addToFavorite }) {
+export function Home({
+  items,
+  cartItems,
+  searchValue,
+  setSearchValue,
+  handleSearchChange,
+  addToCart,
+  addToFavorite,
+  isLoading,
+}) {
+  const renderItems = () => {
+    const filtredItems = items.filter((sneaker) =>
+      sneaker.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    return (isLoading ? [...Array(10).fill({})] : filtredItems).map((sneaker, index) => (
+      <Card
+        key={index}
+        name={sneaker.name}
+        price={sneaker.price}
+        imageUrl={sneaker.imageUrl}
+        onPlus={(sneaker) => addToCart(sneaker)}
+        onFavorite={(sneaker) => addToFavorite(sneaker)}
+        added={cartItems.some((obj) => Number(obj.id) === Number(sneaker.id))}
+        loading={isLoading}
+      />
+    ));
+  };
+
   return (
     <div className="content p-40">
       <div className="d-flex align-center mb-40 justify-between">
@@ -26,22 +54,7 @@ export function Home({ items, searchValue, setSearchValue, handleSearchChange, a
           />
         </div>
       </div>
-      <div className="d-flex flex-wrap">
-        {items
-          .filter((sneaker) =>
-            sneaker.name.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((sneaker, index) => (
-            <Card
-              key={index}
-              name={sneaker.name}
-              price={sneaker.price}
-              imageUrl={sneaker.imageUrl}
-              onPlus={(sneaker) => addToCart(sneaker)}
-              onFavorite={(sneaker) => addToFavorite(sneaker)}
-            />
-          ))}
-      </div>
+      <div className="d-flex flex-wrap">{renderItems()}</div>
     </div>
   );
 }
