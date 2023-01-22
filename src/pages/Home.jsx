@@ -1,4 +1,6 @@
+import React from "react";
 import { Card } from "../components/Card";
+import AppContext from "../context";
 
 export function Home({
   items,
@@ -7,9 +9,11 @@ export function Home({
   setSearchValue,
   handleSearchChange,
   addToCart,
-  addToFavorite,
   isLoading,
 }) {
+
+  const { addToFavorite } = React.useContext(AppContext);
+
   const renderItems = () => {
     const filtredItems = items.filter((sneaker) =>
       sneaker.name.toLowerCase().includes(searchValue.toLowerCase())

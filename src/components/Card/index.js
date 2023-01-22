@@ -9,15 +9,17 @@ export function Card({
   imageUrl,
   onFavorite,
   onPlus,
-  favorited = false,
   added = false,
+  favorited = false,
   loading = false,
 }) {
+
   const [isAdded, setIsAdded] = React.useState(added);
   const [isFavorite, setIsFavorite] = React.useState(favorited);
 
   const handlePlusClick = () => {
     onPlus({ id, name, price, imageUrl });
+    console.log({ id, name, price, imageUrl });
     setIsAdded(!isAdded);
   };
 

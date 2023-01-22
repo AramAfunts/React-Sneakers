@@ -1,4 +1,17 @@
+import React from 'react'
+import { Info } from "./Info";
+import AppContext from '../context';
+
 export function Drawer({ onCloseClick, onRemove, items = [] }) {
+
+  const [isCompleted, setIsCompleted] = React.useState(false)
+    const { setCartItems } = React.useContext(AppContext);
+
+    const onClickOrder = async () => {
+        setIsCompleted(true);
+        setCartItems([]);
+    }
+
   return (
     <div className="overlay">
       <div className="drawer">
@@ -15,8 +28,8 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
         {items.length > 0 ? (
           <>
             <div className="items">
-              {items.map((item) => (
-                <div key={item.id} className="cartItem d-flex align-center mb-20">
+              {items.map((item, index) => (
+                <div key={index} className="cartItem d-flex align-center mb-20">
                   <div
                     style={{ backgroundImage: `url(${item.imageUrl})` }}
                     className="cartItemImg"
@@ -49,31 +62,17 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
                   <b>10,00 $</b>
                 </li>
               </ul>
-              <button className="greenButton">
+              <button onClick={onClickOrder} className="greenButton">
                 Checkout <img src="/img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </>
         ) : (
-          <>
-            <div className="cartEmpty d-flex align-center justify-center flex-column flex">
-              <img
-                className="mb-20"
-                width={120}
-                height={120}
-                src="./img/empty-cart.jpg"
-                alt="Empty Cart"
-              />
-              <h2>Cart is empty</h2>
-              <p className="opacity-6">
-                Add at least one pair of sneakers to checkout.
-              </p>
-              <button onClick={onCloseClick} className="greenButton">
-                <img src="./img/arrow.svg" alt="Arrow" />
-                Return back
-              </button>
-            </div>
-          </>
+          <Info
+            title={isCompleted ? "Order is completed" : "Cart is empty"}
+            description={isCompleted ? "Your order will soon be delivered by courier" : "Add at least one pair of sneakers to checkout."}
+            image={isCompleted ? "./img/complete-order.jpg" : "/img/empty-cart.jpg"}
+          />
         )}
       </div>
     </div>
