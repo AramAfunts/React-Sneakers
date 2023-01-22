@@ -1,16 +1,17 @@
-import React from 'react'
+import React from "react";
 import { Info } from "./Info";
-import AppContext from '../context';
+import AppContext from "../context";
 
 export function Drawer({ onCloseClick, onRemove, items = [] }) {
+  const [isCompleted, setIsCompleted] = React.useState(false);
+  const { cartItems, setCartItems } = React.useContext(AppContext);
 
-  const [isCompleted, setIsCompleted] = React.useState(false)
-    const { setCartItems } = React.useContext(AppContext);
+  const totalPrice = cartItems.reduce((sum, obj) => obj.price + sum, 0);
 
-    const onClickOrder = async () => {
-        setIsCompleted(true);
-        setCartItems([]);
-    }
+  const onClickOrder = () => {
+    setIsCompleted(true);
+    setCartItems([]);
+  };
 
   return (
     <div className="overlay">
@@ -53,13 +54,13 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
                 <li>
                   <span>Total:</span>
                   <div></div>
-                  <b>200,00 $</b>
+                  <b>{totalPrice} $</b>
                 </li>
 
                 <li>
-                  <span>Tax 5%:</span>
+                  <span>Tax:</span>
                   <div></div>
-                  <b>10,00 $</b>
+                  <b>{Math.round((totalPrice / 100) * 5)} $</b>
                 </li>
               </ul>
               <button onClick={onClickOrder} className="greenButton">
@@ -70,8 +71,14 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
         ) : (
           <Info
             title={isCompleted ? "Order is completed" : "Cart is empty"}
-            description={isCompleted ? "Your order will soon be delivered by courier" : "Add at least one pair of sneakers to checkout."}
-            image={isCompleted ? "./img/complete-order.jpg" : "/img/empty-cart.jpg"}
+            description={
+              isCompleted
+                ? "Your order will soon be delivered by courier"
+                : "Add at least one pair of sneakers to checkout."
+            }
+            image={
+              isCompleted ? "./img/complete-order.jpg" : "/img/empty-cart.jpg"
+            }
           />
         )}
       </div>
