@@ -21,7 +21,7 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
           <img
             className="removeBtn cu-p"
             onClick={onCloseClick}
-            src="/img/btn-remove.svg"
+            src="img/btn-remove.svg"
             alt="Close"
           />
         </h2>
@@ -42,7 +42,7 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
                   <img
                     className="removeBtn"
                     onClick={() => onRemove(item.id)}
-                    src="/img/btn-remove.svg"
+                    src="img/btn-remove.svg"
                     alt="Remove"
                   />
                 </div>
@@ -64,7 +64,7 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
                 </li>
               </ul>
               <button onClick={onClickOrder} className="greenButton">
-                Checkout <img src="/img/arrow.svg" alt="Arrow" />
+                Checkout <img src="img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </>
@@ -77,7 +77,7 @@ export function Drawer({ onCloseClick, onRemove, items = [] }) {
                 : "Add at least one pair of sneakers to checkout."
             }
             image={
-              isCompleted ? "./img/complete-order.jpg" : "/img/empty-cart.jpg"
+              isCompleted ? "img/complete-order.jpg" : "img/empty-cart.jpg"
             }
           />
         )}

@@ -42,7 +42,7 @@ export function Card({
         <>
           <div className={classes.favorite} onClick={onFavoriteClick}>
             <img
-              src={isFavorite ? "./img/liked.svg" : "./img/unliked.svg"}
+              src={isFavorite ? "img/liked.svg" : "img/unliked.svg"}
               alt="unliked"
             />
           </div>
@@ -56,7 +56,7 @@ export function Card({
             <img
               className={classes.plusButton}
               onClick={handlePlusClick}
-              src={isAdded ? "./img/btn-checked.svg" : "./img/btn-plus.svg"}
+              src={isAdded ? "img/btn-checked.svg" : "img/btn-plus.svg"}
               alt="plus"
             />
           </div>

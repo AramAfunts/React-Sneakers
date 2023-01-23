@@ -13,7 +13,7 @@ export function Header(props) {
     <header className="d-flex justify-between align-center p-40">
       <div className="d-flex align-center">
         <Link to='/'>
-          <img width={40} height={40} src="/img/logo.png" alt="logo" />
+          <img width={40} height={40} src="img/logo.png" alt="logo" />
         </Link>
         <div>
           <h3 className="text-uppercase">React Sneakers</h3>
@@ -22,12 +22,12 @@ export function Header(props) {
       </div>
       <ul className="d-flex">
         <li className="mr-30">
-          <img className="cu-p" onClick={props.onCartClick} width={18} height={18} src="/img/cart.svg" alt="cart" />
+          <img className="cu-p" onClick={props.onCartClick} width={18} height={18} src="img/cart.svg" alt="cart" />
           <span>{totalPrice} $</span>
         </li>
         <li className="mr-20">
           <Link to='/favorites'>
-            <img className="cu-p" width={18} height={18} src="/img/heart.svg" alt="favorites" />
+            <img className="cu-p" width={18} height={18} src="img/heart.svg" alt="favorites" />
           </Link>
         </li>
       </ul>
