@@ -15,7 +15,7 @@ export function Header(props) {
         <Link to='/'>
           <img width={40} height={40} src="img/logo.png" alt="logo" />
         </Link>
-        <div>
+        <div className="header-title">
           <h3 className="text-uppercase">React Sneakers</h3>
           <p className="opacity-5">Best sneakers shop</p>
         </div>

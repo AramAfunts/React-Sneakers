@@ -219,3 +219,33 @@ header {
     background: darken(#9dd558, 5%);
   }
 }
+
+@media only screen and (max-width: 600px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  header {
+    .header-title {
+      display: none;
+    }
+
+    ul {
+      li {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .sneakers-title {
+    display: none;
+  }
+
+  .search-block {
+    width: 90%;
+  }
+}

@@ -37,9 +37,9 @@ export function Home({
     <div className="content p-40">
       <div className="d-flex align-center mb-40 justify-between">
         {searchValue ? (
-          <h1>Searching by request: '{searchValue}'</h1>
+          <h1 className="sneakers-title">Searching by request: '{searchValue}'</h1>
         ) : (
-          <h1>All sneakers</h1>
+          <h1 className="sneakers-title">All sneakers</h1>
         )}
         <div className="search-block">
           <img src="img/search.svg" alt="Search" />
